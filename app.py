@@ -67,8 +67,10 @@ else:
                     how='left'
                 )
                 
-                # Datum und Monat vorbereiten (Immer der Tag, an dem die Datei erstellt wird)
-                heute_str = datetime.now().strftime('%Y-%m-%d')
+                # Datum und Monat vorbereiten
+                heute_str = datetime.now().strftime('%d.%m.%Y') # FORMAT ANPASSUNG: DD.MM.YYYY
+                heute_file_str = datetime.now().strftime('%Y-%m-%d') # Für den ZIP-Namen
+                
                 monate = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
                 aktueller_monat = monate[datetime.now().month - 1]
                 doc_comment_text = f"Bin Clearing {aktueller_monat}"
@@ -133,7 +135,7 @@ else:
                 st.download_button(
                     label="📥 ZIP-Archiv herunterladen",
                     data=zip_buffer.getvalue(),
-                    file_name=f"SAP_Clearing_Dateien_{heute_str}.zip",
+                    file_name=f"SAP_Clearing_Dateien_{heute_file_str}.zip",
                     mime="application/zip"
                 )
 
